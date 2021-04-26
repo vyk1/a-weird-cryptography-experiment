@@ -44,7 +44,6 @@ function descrypto($file, $senha)
     //     # code...
     // }
     // print_r($file);
-    // criptografa porém filetype não rola
     // converte senha em array de chars
     $arrayDChars = s2a($senha);
     // print_r($arrayDChars);
@@ -110,7 +109,7 @@ if ($_POST) {
         <input type="submit" name="Enviar">
     </form>
     <h3>Deseja criptografar?</h3>
-    <p><a href="index.php">Se sim, clique aqui</a></p>
+    <p><a href="cripton.php">Se sim, clique aqui</a></p>
 </body>
 
 </html>

@@ -39,10 +39,13 @@ function crypto($file, $senha)
     $contents = fread($data, $size);
     fclose($data);
 
+
     // converte para base64
     // ->por causa de arquivos que não são texto
     // melhor manipulação
     $baseado = base64_encode($contents);
+
+
 
     // regra 1.
     // se o tamanho da senha for impar
@@ -51,15 +54,18 @@ function crypto($file, $senha)
     if ($tamSenha % 2) {
         $baseado = strrev($baseado);
     }
+    // echo $baseado, "<br>";
 
     // variável final é a concatenação de uma letra aleatória com 
     // os chars do base64 em números da tabela ASCII
     // tabela ASCII!=tabela de base64
     $final = "";
-    for ($i = 0; $i < $size; $i++) {
+    for ($i = 0; $i < strlen($baseado); $i++) {
         $letra = letraAleatoria($senha);
         $final .= getAsciiNum($baseado[$i]) . $letra;
     }
+    // echo $final;
+    // die(); 
     // saída da string criptografada
     return $final;
 }
@@ -68,6 +74,9 @@ function disponibilizaDownload($arquivo, $nome, $type)
     file_put_contents($nome, $arquivo);
     echo "<a href=$nome type=$type target='_blank'>Criptografia pronta!</a>";
 }
+
+// crypto('a.txt', 'a');
+
 if ($_POST) {
     $senha = $_POST['senha'];
     // die();
@@ -109,7 +118,7 @@ if ($_POST) {
         <input type="submit" name="Enviar">
     </form>
     <h3>Deseja descriptografar?</h3>
-    <p><a href="index2.php">Se sim, clique aqui</a></p>
+    <p><a href="criptoff.php">Se sim, clique aqui</a></p>
 </body>
 
 </html>
